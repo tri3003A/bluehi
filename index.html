@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Phòng</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+
+</head>
+<body>
+    <header>
+        
+        <!-- <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Tìm kiếm phòng..." onkeyup="searchRooms()">
+        </div> -->
+        <div class="header-container">
+            <div class="overlay">
+                <div class="header-top">
+                    <div class="header-links">
+                            <a href="https://www.facebook.com/nguyen.minh.tri.651727">
+                                <i class="fa-brands fa-facebook-f fa-2xl" style="color: #222020;"></i> facebook 
+                            </a>
+                            <a href="https://www.instagram.com/nmtri3003/">
+                                <i class="fa-brands fa-instagram fa-2xl" style="color: #222020;"></i> instagram 
+                            </a>
+                    </div>
+                    <div class="header-call">
+                        <i class="fa-solid fa-phone" style="color: #272022;"></i>Contact 0703104851 Zalo (Minh Trí)
+                    </div>
+                    <div class="header-options">
+                        <a href="#">🔔 hỗ trợ tìm phòng</a>
+                    
+                    </div>
+                </div>
+                <div class="header-main">
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Tìm kiếm phòng..." onkeyup="searchRooms()">
+                        <button onclick="searchRooms()">🔍</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="room-container" id="room-container">
+            <!-- Dữ liệu phòng sẽ được thêm vào đây -->
+        </div>
+        <div class="room-container">
+            <div class="room-card">
+                <img src="image/41DTL/studio/main.jpg" alt="Phòng 1" onclick="goToDetail('room/room1.html')">
+                <h3>Phòng Studio </h3>
+                <p1>Vị trí: Đỗ Thừa Tự</p1>
+                <p>4,300,000 VNĐ</p>
+                <p>Giảm còn 3,900,000 VNĐ</p>
+
+            </div>
+            <div class="room-card">
+                <img src="image/41DTL/studio cửa sổ trời/main.jpg" alt="Phòng 2" onclick="goToDetail('room/room2.html')">
+                <h3>Phòng Studio</h3>
+                <p1>Vị trí: Đỗ Thừa Tự</p1>
+                <p>4,500,000 VNĐ</p>
+                <p>Giảm còn 4,000,000 VNĐ</p>
+                <p>lock</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p style="color: #222020;">&copy; 2024 BLUE HOUSE</p>
+        <p style="color: #222020;">&copy; Chuyên phân phối dự án BDS cho thuê.</p>
+        <p style="color: #222020;">&copy; Kết nối nâng tầm giá trị</p>
+    </footer>
+    <script src="script.js"></script>   
+    <script>
+        function goToDetail(url) {
+            window.location.href = url;
+        }
+        // Tìm kiếm phòng
+        function searchRooms() {
+            const input = document.getElementById('search-input').value.toLowerCase();
+            const cards = document.querySelectorAll('.room-card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                const description = card.querySelector('p1').textContent.toLowerCase();
+                
+                if (title.includes(input) || description.includes(input)) {
+                    card.style.display = 'block'; // Hiển thị nếu khớp
+                } else {
+                    card.style.display = 'none'; // Ẩn nếu không khớp
+                }
+            });
+        }
+    </script>
+</body>
+</html>
