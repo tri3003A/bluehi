@@ -166,3 +166,19 @@ table th {
 #fullscreen-image:active {
     cursor: grabbing;
 }
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+}
+
+.close-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
