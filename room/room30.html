@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Căn Studio</title>
+    <link rel="stylesheet" href="room.css">
+</head>
+<body>
+    <!-- Phần Giới Thiệu -->
+    <section class="introduction">
+        <h1>Căn Duplex Bancol</h1>
+        <p>
+            Căn duplex bancol Ỷ lan phòng trống 
+            Cửa ra vào sử dụng vân tay từ đảm bảo an ninh tuyệt đối.
+        </p>
+    </section>
+
+    <!-- Phần Ảnh Chi Tiết -->
+    <section class="image-gallery">
+        <h2>Hình Ảnh Chi Tiết</h2>
+        <div class="gallery">
+            <img src="../image/52.40ds8/Ỷ lan/bancol/1.jpg" alt="Ảnh 1" onclick="toggleFullScreen(this)">
+            <img src="../image/52.40ds8/Ỷ lan/bancol/z6267485443082_d2931ea915735fe8228c57bfce03aa2d.jpg" alt="Ảnh 2" onclick="toggleFullScreen(this)">
+            <img src="../image/52.40ds8/Ỷ lan/bancol/z6267485451345_17520699a53bae8a4f337403eb3aba72.jpg" alt="Ảnh 3" onclick="toggleFullScreen(this)">
+            <img src="../image/52.40ds8/Ỷ lan/bancol/z6267485452326_23b5a09d3232adfe2ddb8ebf35d40062.jpg" alt="Ảnh 4" onclick="toggleFullScreen(this)">
+            <img src="../image/52.40ds8/Ỷ lan/bancol/z6267485452412_cd5b7ce21297e3445db74c079add8242.jpg" alt="Ảnh 5" onclick="toggleFullScreen(this)">
+            <img src="../image/52.40ds8/Ỷ lan/bancol/z6267485475608_953d8a998ac34872f6ceba1fcbc62af9.jpg" alt="Ảnh 5" onclick="toggleFullScreen(this)">
+            <img src="../image/52.40ds8/Ỷ lan/bancol/z6267485477173_b8c6a0efc263f716ebf555dd60257bd7.jpg" alt="Ảnh 5" onclick="toggleFullScreen(this)">
+            <img src="../image/52.40ds8/Ỷ lan/bancol/z6267485481507_3cb6966325340d15a1a8b4f92fa58bf3.jpg" alt="Ảnh 5" onclick="toggleFullScreen(this)">
+            <img src="../image/52.40ds8/Ỷ lan/bancol/z6267485482452_a31962c708b121611f25954dec2798f2.jpg" alt="Ảnh 5" onclick="toggleFullScreen(this)">
+        </div>
+    </section>
+
+    <!-- Phần Bảng Giá Dịch Vụ -->
+    <section class="service-pricing">
+        <h2>Bảng Giá Dịch Vụ</h2>
+        <table>
+            <tr>
+                <th>Dịch Vụ</th>
+                <th>Giá (VNĐ)</th>
+            </tr>
+            <tr>
+                <td>Điện</td>
+                <td>3,800 VNĐ/kWh</td>
+            </tr>
+            <tr>
+                <td>Nước</td>
+                <td>80,000 VNĐ/người</td>
+            </tr>
+            <tr>
+                <td>Phí Dịch Vụ</td>
+                <td>150,000 VNĐ/phòng</td>
+            </tr>
+            <tr>
+                <td>Phí Giữ Xe</td>
+                <td>Free max 1</td>
+            </tr>
+            <tr>
+                <td>Thú cưng</td>
+                <td>Free</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Nút Quay Lại Trang Đầu -->
+    <section class="back-button">
+        <button onclick="goToHome()">⬅️ Quay Lại Trang Đầu</button>
+    </section>
+
+    <!-- Overlay Toàn Màn Hình
+    <div id="fullscreen-overlay" onclick="toggleFullScreen()">
+        <img id="fullscreen-image" src="" alt="Ảnh Toàn Màn Hình">
+    </div> -->
+    <div id="fullscreen-overlay">
+        <span class="nav-arrow left" onclick="prevImage()">⬅️</span>
+        <img id="fullscreen-image" src="" alt="Ảnh Toàn Màn Hình">
+        <span class="nav-arrow right" onclick="nextImage()">➡️</span>
+        <span class="close-btn" onclick="closeFullScreen()">✖️</span>
+    </div>
+    
+    
+    <script>
+        // Điều hướng trang chủ
+        function goToHome() {
+            window.location.href = "https://tri3003a.github.io/rent/";
+        }
+
+        // // Hiện ảnh toàn màn hình
+        // function toggleFullScreen(img) {
+        //     const overlay = document.getElementById('fullscreen-overlay');
+        //     const fullscreenImg = document.getElementById('fullscreen-image');
+
+        //     if (!overlay.classList.contains('active')) {
+        //         // Hiện ảnh toàn màn hình
+        //         fullscreenImg.src = img.src;
+        //         overlay.classList.add('active');
+        //     } else {
+        //         // Thoát khỏi chế độ toàn màn hình
+        //         overlay.classList.remove('active');
+        //         fullscreenImg.src = '';
+        //     }
+        // }
+        let currentImageIndex = 0; // Vị trí hiện tại của ảnh
+let images = []; // Danh sách các ảnh trong gallery
+
+function toggleFullScreen(img) {
+    const overlay = document.getElementById('fullscreen-overlay');
+    const fullscreenImg = document.getElementById('fullscreen-image');
+
+    if (!overlay.classList.contains('active')) {
+        // Hiện ảnh toàn màn hình
+        overlay.classList.add('active');
+        images = Array.from(document.querySelectorAll('.gallery img')).map(i => i.src);
+        currentImageIndex = images.indexOf(img.src);
+        fullscreenImg.src = images[currentImageIndex];
+    } else {
+        // Thoát chế độ toàn màn hình
+        overlay.classList.remove('active');
+    }
+}
+
+function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    document.getElementById('fullscreen-image').src = images[currentImageIndex];
+}
+
+function prevImage() {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    document.getElementById('fullscreen-image').src = images[currentImageIndex];
+}
+function closeFullScreen() {
+    const overlay = document.getElementById('fullscreen-overlay');
+    overlay.classList.remove('active');
+}
+
+
+    </script>
+</body>
+</html>

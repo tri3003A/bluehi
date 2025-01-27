@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Căn Studio</title>
+    <link rel="stylesheet" href="room.css">
+</head>
+<body>
+    <!-- Phần Giới Thiệu -->
+    <section class="introduction">
+        <h1>Căn Duplex Lũy Bán Bích</h1>
+        <p>
+            Căn duplex mặt tiền 662 Lũy Bán Bích gác cao 1m8 được trang bị full nội thất hiện đại. Nhà xe rộng rãi , thang bộ tầng 1 
+            Cửa ra vào sử dụng vân tay từ đảm bảo an ninh tuyệt đối.
+        </p>
+    </section>
+
+    <!-- Phần Ảnh Chi Tiết -->
+    <section class="image-gallery">
+        <h2>Hình Ảnh Chi Tiết</h2>
+        <div class="gallery">
+            <img src="../image/145LeLu/LBB/1/main.jpg" alt="Ảnh 1" onclick="toggleFullScreen(this)">
+            <img src="../image/145LeLu/LBB/1/z6186134196050_b2ff2982c9183de256a1bb0679600cd5.jpg" alt="Ảnh 2" onclick="toggleFullScreen(this)">
+            <img src="../image/145LeLu/LBB/1/z6186134208476_d551d4e44147daf6857ee1ed34b4b155.jpg" alt="Ảnh 3" onclick="toggleFullScreen(this)">
+            <img src="../image/145LeLu/LBB/1/z6186134274111_93dade8ff71bcdf42d86adb99bc1c883.jpg" alt="Ảnh 4" onclick="toggleFullScreen(this)">
+        </div>
+    </section>
+
+    <!-- Phần Bảng Giá Dịch Vụ -->
+    <section class="service-pricing">
+        <h2>Bảng Giá Dịch Vụ</h2>
+        <table>
+            <tr>
+                <th>Dịch Vụ</th>
+                <th>Giá (VNĐ)</th>
+            </tr>
+            <tr>
+                <td>Điện</td>
+                <td>3,800 VNĐ/kWh</td>
+            </tr>
+            <tr>
+                <td>Nước</td>
+                <td>100,000 VNĐ/người</td>
+            </tr>
+            <tr>
+                <td>Phí Dịch Vụ</td>
+                <td>150,000 VNĐ/phòng</td>
+            </tr>
+            <tr>
+                <td>Phí Giữ Xe</td>
+                <td>Free max 2</td>
+            </tr>
+            <tr>
+                <td>Thú cưng</td>
+                <td>Free</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Nút Quay Lại Trang Đầu -->
+    <section class="back-button">
+        <button onclick="goToHome()">⬅️ Quay Lại Trang Đầu</button>
+    </section>
+
+    <!-- Overlay Toàn Màn Hình
+    <div id="fullscreen-overlay" onclick="toggleFullScreen()">
+        <img id="fullscreen-image" src="" alt="Ảnh Toàn Màn Hình">
+    </div> -->
+    <div id="fullscreen-overlay">
+        <span class="nav-arrow left" onclick="prevImage()">⬅️</span>
+        <img id="fullscreen-image" src="" alt="Ảnh Toàn Màn Hình">
+        <span class="nav-arrow right" onclick="nextImage()">➡️</span>
+        <span class="close-btn" onclick="closeFullScreen()">✖️</span>
+    </div>
+    
+    
+    <script>
+        // Điều hướng trang chủ
+        function goToHome() {
+            window.location.href = "https://tri3003a.github.io/rent/";
+        }
+
+        // // Hiện ảnh toàn màn hình
+        // function toggleFullScreen(img) {
+        //     const overlay = document.getElementById('fullscreen-overlay');
+        //     const fullscreenImg = document.getElementById('fullscreen-image');
+
+        //     if (!overlay.classList.contains('active')) {
+        //         // Hiện ảnh toàn màn hình
+        //         fullscreenImg.src = img.src;
+        //         overlay.classList.add('active');
+        //     } else {
+        //         // Thoát khỏi chế độ toàn màn hình
+        //         overlay.classList.remove('active');
+        //         fullscreenImg.src = '';
+        //     }
+        // }
+        let currentImageIndex = 0; // Vị trí hiện tại của ảnh
+let images = []; // Danh sách các ảnh trong gallery
+
+function toggleFullScreen(img) {
+    const overlay = document.getElementById('fullscreen-overlay');
+    const fullscreenImg = document.getElementById('fullscreen-image');
+
+    if (!overlay.classList.contains('active')) {
+        // Hiện ảnh toàn màn hình
+        overlay.classList.add('active');
+        images = Array.from(document.querySelectorAll('.gallery img')).map(i => i.src);
+        currentImageIndex = images.indexOf(img.src);
+        fullscreenImg.src = images[currentImageIndex];
+    } else {
+        // Thoát chế độ toàn màn hình
+        overlay.classList.remove('active');
+    }
+}
+
+function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    document.getElementById('fullscreen-image').src = images[currentImageIndex];
+}
+
+function prevImage() {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    document.getElementById('fullscreen-image').src = images[currentImageIndex];
+}
+function closeFullScreen() {
+    const overlay = document.getElementById('fullscreen-overlay');
+    overlay.classList.remove('active');
+}
+
+
+    </script>
+</body>
+</html>
